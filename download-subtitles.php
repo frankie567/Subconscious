@@ -1,21 +1,27 @@
 <?php
 
+// Subliminal binary path
+$subliminalPath = "/usr/local/bin/";
+
 // Request data
 $videoTitle = $_POST["videoTitle"];
 $language = $_POST["language"];
 
 // Execute the Subliminal command
-exec("/Applications/MAMP/Library/bin/subliminal -l ".$language." -d downloaded -- ".$videoTitle. " 2>&1", $out, $err);
+exec($subliminalPath."subliminal -l ".$language." -d downloaded -- ".$videoTitle. " 2>&1", $out, $err);
 
 // Parse the output to know if a subtitle was downloaded
+$response = array();
 $lastOutput = end($out);
+
 if ($lastOutput == "No subtitles downloaded")
 {
-	echo "Not found";
+	$response["nbOfSubtitles"] = 0;
 }
 else
 {
 	$nbOfSubtitles = explode(" ", $lastOutput)[0];
+	$response["nbOfSubtitles"] = $nbOfSubtitles;
 	// Handle only one subtitle
 	if ($nbOfSubtitles == 1)
 	{
@@ -26,15 +32,12 @@ else
 			$provider = $infos[1][0];
 			$filename = $infos[2][0];
 			
-			// Set headers to download the file
-			header("Content-disposition: attachment; filename=".explode("/", $filename)[1]);
-			header("Content-type: text/plain");
-			readfile($filename);
-			
-			// Remove the file
-			unlink($filename);
+			$response["downloadPath"] = $filename;
 		}
 	}
 }
+
+header('Content-type: application/json');
+echo json_encode($response);
 
 ?>

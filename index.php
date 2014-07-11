@@ -71,6 +71,9 @@
 					</div>
 					<button type="submit" id="formSubmitButton" class="btn btn-primary btn-lg btn-block">Download my subtitles</button>
 		    	</form>
+		    	<p>
+		    	    <div class="alert" role="alert" id="subconsciousMessage">...</div>
+		    	</p>
 			</div>
 		</div>
 
@@ -79,28 +82,51 @@
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
         
+        <script src="js/download.js"></script>
+        
         <! -- Script to call the subtitle downloader in AJAX -->
         <script>
         	$(document).ready(function()
         	{
+        	    $("#subconsciousMessage").hide();
+        	    
         		$("#subconsciousForm").submit(function(e)
         		{
         			e.preventDefault();
         			
-        			// Loading state button
+        			// Loading state button and hide message
         			$("#formSubmitButton").attr("disabled","disabled");
         			$("#formSubmitButton").html("<i class='fa fa-refresh fa-spin'></i> Searching subtitles...");
+        			$("#subconsciousMessage").hide();
         			
         			// Submit the form
         			var url = $(this).attr('action');
         			var posting = $.post(url, $(this).serialize());
         			posting.done(function(data)
         			{
-        				console.log(data);
+        				// If no subtitle found, error message
+        				if (data.nbOfSubtitles == 0)
+        				{
+                            $("#subconsciousMessage").removeClass("alert-success");
+                            $("#subconsciousMessage").addClass("alert-danger");
+                            $("#subconsciousMessage").html("Sorry, I didn't find the subtitles you want :(");
+        				}
+        				// Else show the number of subtitles found and start download
+        				else
+        				{
+        				    $("#subconsciousMessage").removeClass("alert-danger");
+                            $("#subconsciousMessage").addClass("alert-success");
+                            $("#subconsciousMessage").html("I found "+data.nbOfSubtitles+" subtitle(s).");
+                            
+                            downloadFile(data.downloadPath);
+        				}
         				
         				// Normal state button
 						$("#formSubmitButton").removeAttr("disabled");
 						$("#formSubmitButton").html("Download my subtitles");
+						
+						// Show message
+						$("#subconsciousMessage").show();
         			});
         		});
         	});
