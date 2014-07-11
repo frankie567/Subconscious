@@ -47,9 +47,9 @@
 		    	<h1>Your subtitles in 5 seconds.</h1>
 		    	<p>Find the right subtitle for a movie or the last episode of your favorite serie is difficult. I know it. Now, with Subconscious, just copy & paste the title of your video and let the magic happen !</p>
 		    	<form role="form" id="subconsciousForm" method="post" action="download-subtitles.php">
-		    		<div class="form-group">
-						<label for="videoTitle">Paste the full title of your video (episode or movie)</label>
-						<input type="text" class="form-control" id="videoTitle" name="videoTitle" placeholder="Game.of.Thrones.S04E01.720p.HDTV.x264-KILLERS.mkv" required>
+					<div class="form-group">
+						<label for="videosTitles">Paste the full titles of your videos (episode or movie). One per line.</label>
+						<textarea class="form-control" rows="5" id="videosTitles" name="videosTitles" placeholder="Game.of.Thrones.S04E01.720p.HDTV.x264-KILLERS.mkv" required></textarea>
 					</div>
 					<div class="form-group">
 						<label for="language">Select the language you want</label>
