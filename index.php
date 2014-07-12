@@ -11,6 +11,9 @@
         
         <link href="css/subconscious.css" rel="stylesheet">
         <link href="css/font-awesome.min.css" rel="stylesheet">
+        
+        <link href="css/select2.css" rel="stylesheet">
+        <link href="css/select2-bootstrap.css" rel="stylesheet">
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -52,8 +55,8 @@
 						<textarea class="form-control" rows="5" id="videosTitles" name="videosTitles" placeholder="Game.of.Thrones.S04E01.720p.HDTV.x264-KILLERS.mkv" required></textarea>
 					</div>
 					<div class="form-group">
-						<label for="language">Select the language you want</label>
-						<select class="form-control" id="language" name="language" required>
+						<label for="languages">Select the language(s) you want</label>
+						<select class="form-control" id="languages" name="languages[]" multiple required>
 							<?php
 								// Open the file containing the language and populates the options
 								$languagesFile = file_get_contents("js/languages.js");
@@ -81,6 +84,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <script src="js/select2.min.js"></script>
         
         <script src="js/download.js"></script>
         
@@ -88,6 +92,7 @@
         <script>
         	$(document).ready(function()
         	{
+        	    $("#languages").select2();
         	    $("#subconsciousMessage").hide();
         	    
         		$("#subconsciousForm").submit(function(e)

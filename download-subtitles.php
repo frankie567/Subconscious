@@ -5,7 +5,7 @@ $subliminalPath = "/usr/local/bin/";
 
 // Request data
 $videosTitles = $_POST["videosTitles"];
-$language = $_POST["language"];
+$languages = $_POST["languages"];
 
 // Execute the Subliminal command
 $videos = preg_split('/\r\n|\n|\r/', $videosTitles);
@@ -14,7 +14,7 @@ foreach ($videos as $video)
 {
     $videosList .= escapeshellarg($video)." ";
 }
-exec($subliminalPath."subliminal -l ".$language." -d downloaded -- ".$videosList."2>&1", $out, $err);
+exec($subliminalPath."subliminal -l ".implode(" ", $languages)." -d downloaded -- ".$videosList."2>&1", $out, $err);
 
 // Parse the output to know if a subtitle was downloaded
 $response = array();
