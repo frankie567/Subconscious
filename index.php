@@ -84,9 +84,12 @@
 			    <h1>About Subconscious</h1>
 			</div>
 			
-			<p class="lead">Subconscious relies on the marvelous Python library of Diaoul, <a href="https://github.com/Diaoul/subliminal" target="_blank">Subliminal</a>. All the credit goes to him.</p>
+			<p class="lead">A web interface for the marvelous Python library of Diaoul, <a href="https://github.com/Diaoul/subliminal" target="_blank">Subliminal</a>. Get your subtitles for your movies and episodes in 5 seconds in a clean web interface ! It is released under the MIT license, check the <a href="https://github.com/frankie567/Subconscious" target="_blank">GitHub repository</a> !</p>
+			
+			<p class="lead">It relies on the marvelous Python library of Diaoul, <a href="https://github.com/Diaoul/subliminal" target="_blank">Subliminal</a>. All the credit goes to him.</p>
 			
 			<p class="lead">It also makes use of <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>, <a href="http://ivaynberg.github.io/select2" target="_blank">Select2</a> and <a href="https://github.com/PixelsCommander/Download-File-JS" target="_blank">DownloadJS</a> scripts.</p>
+			
 		</div>
 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
