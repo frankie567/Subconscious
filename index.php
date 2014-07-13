@@ -22,7 +22,7 @@
             <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
     </head>
-    <body>
+    <body id="download">
     
         <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container">
@@ -33,19 +33,19 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Subconscious</a>
+                    <a class="navbar-brand" href="#download">Subconscious</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="#download">Download</a></li>
                         <li><a href="#about">About</a></li>
-                        <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div><!--/.nav-collapse -->
             </div>
         </div>
 
         <div class="container">
+            <!-- MAIN FORM -->
             <div class="jumbotron jumbotron-sub">
 		    	<h1>Your subtitles in 5 seconds.</h1>
 		    	<p>Find the right subtitle for a movie or the last episode of your favorite serie is difficult. I know it. Now, with Subconscious, just copy & paste the title of your video and let the magic happen !</p>
@@ -78,6 +78,15 @@
 		    	    <div class="alert" role="alert" id="subconsciousMessage">...</div>
 		    	</p>
 			</div>
+			
+			<!-- ABOUT PART -->
+			<div class="page-header" id="about">
+			    <h1>About Subconscious</h1>
+			</div>
+			
+			<p class="lead">Subconscious relies on the marvelous Python library of Diaoul, <a href="https://github.com/Diaoul/subliminal" target="_blank">Subliminal</a>. All the credit goes to him.</p>
+			
+			<p class="lead">It also makes use of <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>, <a href="http://ivaynberg.github.io/select2" target="_blank">Select2</a> and <a href="https://github.com/PixelsCommander/Download-File-JS" target="_blank">DownloadJS</a> scripts.</p>
 		</div>
 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
