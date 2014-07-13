@@ -92,8 +92,15 @@
         <script>
         	$(document).ready(function()
         	{
+        	    // Initializations
         	    $("#languages").select2();
         	    $("#subconsciousMessage").hide();
+        	    
+        	    // If languages stored in local storage, select them
+        	    if (localStorage.getItem("languages"))
+        	    {
+        	        $("#languages").select2("val", localStorage.getItem("languages").split(","));
+        	    }
         	    
         		$("#subconsciousForm").submit(function(e)
         		{
@@ -103,6 +110,11 @@
         			$("#formSubmitButton").attr("disabled","disabled");
         			$("#formSubmitButton").html("<i class='fa fa-refresh fa-spin'></i> Searching subtitles...");
         			$("#subconsciousMessage").hide();
+        			
+        			// Save in local storage the preferred languages
+        			var languages = [];
+                    $('#languages option:selected').each(function(){ languages.push($(this).val()); });
+        			localStorage.setItem("languages", languages);
         			
         			// Submit the form
         			var url = $(this).attr('action');
