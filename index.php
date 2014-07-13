@@ -126,7 +126,7 @@
         				{
                             $("#subconsciousMessage").removeClass("alert-success");
                             $("#subconsciousMessage").addClass("alert-danger");
-                            $("#subconsciousMessage").html("Sorry, I didn't find the subtitles you want :(");
+                            $("#subconsciousMessage").html(data.error);
         				}
         				// Else show the number of subtitles found and start download
         				else

@@ -8,7 +8,7 @@ $videosTitles = $_POST["videosTitles"];
 $languages = $_POST["languages"];
 
 // Execute the Subliminal command
-$videos = preg_split('/\r\n|\n|\r/', $videosTitles);
+$videos = preg_split("/\r\n|\n|\r/", $videosTitles);
 $videosList = "";
 foreach ($videos as $video)
 {
@@ -16,13 +16,21 @@ foreach ($videos as $video)
 }
 exec($subliminalPath."subliminal -l ".implode(" ", $languages)." -d downloaded -- ".$videosList."2>&1", $out, $err);
 
-// Parse the output to know if a subtitle was downloaded
+// Parse the output to know what happened
 $response = array();
 $lastOutput = end($out);
 
-if ($lastOutput == "No subtitles downloaded")
+// Bad input (not a movie/episode)
+if (strpos($lastOutput, "ValueError") !== false)
+{
+    $response["nbOfSubtitles"] = 0;
+    $response["error"] = "Your input doesn't seem to be a movie or an episode :(";
+}
+// No subtitles found
+else if ($lastOutput == "No subtitles downloaded")
 {
 	$response["nbOfSubtitles"] = 0;
+	$response["error"] = "Sorry, I didn't find the subtitles you want :(";
 }
 else
 {
@@ -70,7 +78,7 @@ else
 	}
 }
 
-header('Content-type: application/json');
+header("Content-type: application/json");
 echo json_encode($response);
 
 ?>
